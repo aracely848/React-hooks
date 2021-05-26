@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { UserContext } from './UserContext';
+import React, { useContext } from 'react'
+import { UserContext } from './UserContext'
 
 export const AboutScreen = () => {
-    
-    const { user, setUser } = useContext(UserContext);
 
-    const handleClick = ()=>{
+    const { user, setUser } = useContext( UserContext );
+
+    const handleClick = () => {
         setUser({});
     }
 
@@ -15,15 +15,17 @@ export const AboutScreen = () => {
             <hr />
 
             <pre>
-                { JSON.stringify( user, null, 3 )}
+                { JSON.stringify( user, null, 3 ) }
             </pre>
 
-            <button
+
+            <button 
                 className="btn btn-warning"
                 onClick={ handleClick }
             >
                 Logout
             </button>
+
         </div>
     )
 }

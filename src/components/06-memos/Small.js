@@ -1,11 +1,12 @@
-//Componente Funcional
-import React from 'react';
+import React from 'react'
 
-export const Small = React.memo(({ value }) =>{
+export const Small = React.memo(({ value }) => {
 
-    console.log('Me volví a llamar :(')
+    console.log(' Me volví a llamar :(  ');
+    // http?
 
-    return(
+    return (
         <small> { value } </small>
     )
 });
+

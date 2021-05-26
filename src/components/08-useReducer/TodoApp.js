@@ -1,55 +1,57 @@
-import React, { useEffect, useReducer } from 'react';
-import './styles.css';
-import { TodoAdd } from './TodoAdd';
-import { TodoList } from './TodoList';
+import React, { useReducer, useEffect } from 'react';
 import { todoReducer } from './todoReducer';
 
+import { TodoList } from './TodoList';
+import { TodoAdd } from './TodoAdd';
+import './styles.css';
 
 const init = () => {
+
     return JSON.parse(localStorage.getItem('todos')) || [];
-    /*return [{
-        id: new Date().getTime(),
-        desc: 'Aprender React',
-        done: false
-    }];*/
+
 }
 
 export const TodoApp = () => {
 
-    const [ todos, dispatch ] = useReducer(todoReducer, [], init)  
-
-    useEffect( ()=>{
-        localStorage.setItem('todos', JSON.stringify(todos));
+    const [ todos, dispatch ] = useReducer(todoReducer, [], init);
+    
+    useEffect( ()=> {
+        localStorage.setItem('todos', JSON.stringify( todos ) );
     }, [todos]);
 
-    const handleDelete = (todoId) => {
-        
+
+    const handleDelete = ( todoId ) => {
+
         const action = {
             type: 'delete',
             payload: todoId
         }
 
-        dispatch(action);
+        dispatch( action );
     }
 
-    const handleToggle = (todoId) => {
-       dispatch({
-           type: 'toggle',
-           payload: todoId
-       }) 
+    const handleToggle = ( todoId ) =>{
+        
+        dispatch({
+            type: 'toggle',
+            payload: todoId
+        });
+
     }
 
-    const handleAddTodo = (newTodo) => {
+    const handleAddTodo = ( newTodo ) => {
+        
         dispatch({
             type: 'add',
             payload: newTodo
         });
-      
+
     }
 
-    return(
+
+    return (
         <div>
-            <h1>TodoApp ({ todos.length })</h1>
+            <h1>TodoApp ( { todos.length } ) </h1>
             <hr />
 
             <div className="row">
@@ -58,18 +60,25 @@ export const TodoApp = () => {
 
                     <TodoList 
                         todos={ todos }
-                        handleDelete = { handleDelete }
-                        handleToggle = { handleToggle }
+                        handleDelete={ handleDelete }
+                        handleToggle={ handleToggle }
                     />
 
                 </div>
+
 
                 <div className="col-5">
+                    
                     <TodoAdd 
-                        handleAddTodo = { handleAddTodo }
+                        handleAddTodo={ handleAddTodo }
                     />
+                    
+
                 </div>
+
+
             </div>
+
         </div>
     )
 }
